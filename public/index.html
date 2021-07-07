@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="./css/style.css">
   <script src="./js/main.js"></script>
@@ -17,25 +19,35 @@
 </head>
 <body>
 
-  <div class="bg"> 
-<ul class="list">List</ul>
+  <div class="bg-1"></div>
+  <div class="bg-2"></div>
+<div class="content">
 
-  </div>
-  <div class="content">
-    
-  </div>
-  TodoList
 
-  <!-- Add dynamic number --> items left
+<div class="bannerContent">
+  <h1>
+TODO
+  </h1>
+  <img src="../public/images/icon-sun.svg">
+</div>
+<div class="newItem">
+  <input id="newTodo" type="text" placeholder="Create a New Todo...">
 
-  All
-  Active 
-  Completed
-
-  Clear Completed
-
-  Drag and drop to reorder list
-
+</div>
+<div class="list">
+  <li class="list-item">Item 1</li>
+  <li class="list-item">Item 2</li>
+  <li class="list-item">Item 3</li>
+  <li class="list-item">Item 4</li>
+  <li class="list-item">Item 5</li>
+<p>5 Items Left, Clear Completed</p>
+</div>
+<div class="buttons">
+  <button>All</button>
+  <button>Active</button>
+  <button>Completed</button>
+</div>
+</div>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
