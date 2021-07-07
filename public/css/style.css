@@ -63,16 +63,19 @@ html {
   border-radius: 5px;
   margin-bottom: 5%;
 }
+
 .list {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 80%;
-
   margin-bottom: 5%;
 }
 .list-item {
+  display: flex;
+  flex-direction: row;
+
   width: 100%;
   background-color: hsl(235, 24%, 19%);
   text-align: left;
@@ -89,10 +92,19 @@ html {
   padding: 10px;
   height: 100%;
   width: 100%;
-  text-align: center;
   background-color: hsl(235, 24%, 19%);
 }
-
+.list-item li {
+  margin-right: auto;
+}
+.list-item:first-child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.list-item:last-child {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
 .buttons {
   width: 80%;
   display: flex;
@@ -101,6 +113,7 @@ html {
   align-items: center;
   background-color: hsl(235, 24%, 19%);
   padding: 10px;
+  border-radius: 5px;
 }
 .buttons a {
   margin: 5px;
