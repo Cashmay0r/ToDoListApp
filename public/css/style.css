@@ -8,6 +8,7 @@ html {
   width: 100%;
   padding: 0;
   margin: 0;
+  position: absolute;
 }
 .bg-1 {
   background-image: url("../images/bg-desktop-light.jpg");
@@ -31,15 +32,16 @@ html {
   width: 100%;
 }
 .bannerContent {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 20px 20px 0px 20px;
+  width: 80%;
+  padding: 20px 20px 0px 0px;
 }
 #title {
-  margin-right: 50vw;
+  margin-right: 40%;
   justify-content: flex-start;
   color: white;
   font-size: xx-large;
@@ -54,7 +56,7 @@ html {
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 0px;
 }
 #newTodo {
   width: 80%;
@@ -63,6 +65,10 @@ html {
   background-color: hsl(235, 24%, 19%);
   border-radius: 5px;
   margin-bottom: 5%;
+  border: none;
+}
+.newItem input::placeholder {
+  color: hsl(234, 11%, 52%);
 }
 
 .list {
@@ -76,6 +82,7 @@ html {
 .list-item {
   display: flex;
   flex-direction: row;
+  align-items: center;
 
   width: 100%;
   background-color: hsl(235, 24%, 19%);
@@ -83,20 +90,56 @@ html {
   list-style-type: none;
   margin: 0px;
   padding: 10px;
-  height: 100%;
+  height: 30px;
+  max-height: 30px;
   color: white;
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
 }
 .list p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   color: white;
   margin: 0;
-  padding: 10px;
   height: 100%;
   width: 100%;
   background-color: hsl(235, 24%, 19%);
+  font-size: small;
 }
 .list-item li {
   margin-right: auto;
+  font-size: small;
+  margin-left: 10px;
+  color: hsl(234, 39%, 85%);
+}
+.list-item input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+#radioBtn {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: hsl(235, 24%, 19%);
+  border-radius: 50%;
+  border: 1px solid hsl(234, 11%, 52%, 0.5);
+}
+
+#radioBtn:hover {
+  background-color: gray;
+}
+#radioBtn:checked {
+  position: relative;
+  background-color: white;
+}
+.list-item p {
+  color: hsl(234, 11%, 52%);
 }
 .list-item:first-child {
   border-top-left-radius: 5px;
@@ -118,6 +161,8 @@ html {
 }
 .buttons a {
   margin: 5px;
+  color: hsl(234, 11%, 52%);
+  font-size: medium;
 }
 
 @media only screen and (max-width: 600px) {

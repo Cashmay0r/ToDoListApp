@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="./js/main.js"></script>
-  <title>Frontend Mentor | Todo app</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/main.js"></script>
+    <title>Frontend Mentor | Todo app</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-1"></div>
+    <div class="bg-2"></div>
+    <div class="content">
+      <div class="bannerContent">
+        <h1 id="title">T O D O</h1>
+        <img id="toggleMode" src="./images/icon-sun.svg" />
+      </div>
+      <div class="newItem">
+        <input id="newTodo" type="text" placeholder="Create a New Todo..." />
+      </div>
 
-  <div class="bg-1"></div>
-  <div class="bg-2"></div>
-<div class="content">
+      <div class="list">
+        <div class="list-item">
+          <input type="radio" name="radio" />
+          <span id="radioBtn"></span>
+          <li>Item 1</li>
+          <img src="./images/icon-cross.svg" />
+        </div>
+        <div class="list-item">
+          <input id="" type="radio" />
+          <span id="radioBtn"></span>
+          <li>Item 1</li>
+          <img src="./images/icon-cross.svg" />
+        </div>
+        <div class="list-item">
+          <input id="" type="radio" />
+          <span id="radioBtn"></span>
+          <li>Item 1</li>
+          <img src="./images/icon-cross.svg" />
+        </div>
 
-
-<div class="bannerContent">
-  <h1 id="title">
-T O D O 
-  </h1>
-  <img id='toggleMode'src="./images/icon-sun.svg">
-</div>
-<div class="newItem">
-  <input id="newTodo" type="text" placeholder="Create a New Todo...">
-
-</div>
-
-<div class="list">
-  <div class="list-item">
-    <input id='radioBtn' type="radio">
-    <li>Item 1</li>
-    <img src="./images/icon-cross.svg">
-  </div>
-  <div class="list-item">
-    <input id='radioBtn' type="radio">
-    <li>Item 1</li>
-    <img src="./images/icon-cross.svg">
-  </div>
-  <div class="list-item">
-    <input id='radioBtn' type="radio">
-    <li>Item 1</li>
-    <img src="./images/icon-cross.svg">
-  </div>
-<p class="list-item">5 Items Left, Clear Completed</p>
-</div>
-<div class="buttons">
-  <a>All</a>
-  <a>Active</a>
-  <a>Completed</a>
-</div>
-</div>
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </ul>
-</body>
+        <div class="list-item">
+          <p>5 Items Left</p>
+          <p>Clear Completed</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <a>All</a>
+        <a>Active</a>
+        <a>Completed</a>
+      </div>
+    </div>
+  </body>
 </html>
