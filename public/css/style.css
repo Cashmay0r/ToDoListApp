@@ -17,10 +17,12 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: -1;
 }
 .bg-2 {
   background-color: white;
   height: 80%;
+  z-index: -1;
 }
 .content {
   top: 0;
@@ -52,23 +54,36 @@ html {
 }
 .newItem {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: left;
   align-items: center;
   width: 100%;
-  padding: 0px;
-}
-#newTodo {
-  width: 80%;
-  height: 100%;
   padding: 10px;
+  width: 80%;
+  height: 30px;
+  max-height: 30px;
   background-color: hsl(235, 24%, 19%);
   border-radius: 5px;
   margin-bottom: 5%;
+}
+
+.itemInput {
+  background-color: hsl(235, 24%, 19%);
+  margin-left: 5px;
+  height: 100%;
+  padding: 0;
   border: none;
+  outline: none;
+  color: hsl(234, 39%, 85%);
+  font-size: medium;
+}
+.radioInput {
+  margin: 0;
+  margin-right: 5px;
 }
 .newItem input::placeholder {
   color: hsl(234, 11%, 52%);
+  font-size: small;
 }
 
 .list {
@@ -83,7 +98,6 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
-
   width: 100%;
   background-color: hsl(235, 24%, 19%);
   text-align: left;
@@ -99,7 +113,7 @@ html {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   color: white;
   margin: 0;
   height: 100%;
@@ -110,34 +124,11 @@ html {
 .list-item li {
   margin-right: auto;
   font-size: small;
-  margin-left: 10px;
+  margin-left: 5px;
   color: hsl(234, 39%, 85%);
 }
-.list-item input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-#radioBtn {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: hsl(235, 24%, 19%);
-  border-radius: 50%;
-  border: 1px solid hsl(234, 11%, 52%, 0.5);
-}
+/*Radio Button Styling*/
 
-#radioBtn:hover {
-  background-color: gray;
-}
-#radioBtn:checked {
-  position: relative;
-  background-color: white;
-}
 .list-item p {
   color: hsl(234, 11%, 52%);
 }
