@@ -39,10 +39,10 @@ html {
   position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  width: 80%;
-  padding: 20px 20px 0px 0px;
+  width: 90%;
+  margin-top: 5%;
 }
 #title {
   margin-right: 40%;
@@ -67,6 +67,7 @@ html {
   background-color: hsl(235, 24%, 19%);
   border-radius: 5px;
   margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .itemInput {
@@ -161,11 +162,28 @@ html {
 
 @media only screen and (min-width: 600px) {
   .bg-1 {
-    background-image: url("../images/bg-desktop-light.jpg");
+    background-image: url("../images/bg-desktop-dark.jpg");
     height: 20%;
   }
   .bg-2 {
     background-color: hsl(235, 21%, 11%);
     height: 80%;
+  }
+  .newItem {
+    margin-bottom: 3%;
+  }
+  .list {
+    margin-bottom: 0;
+  }
+  .list-item:last-child {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: 1px solid rgba(191, 191, 191, 0.2);
+  }
+  .buttons {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
 }
