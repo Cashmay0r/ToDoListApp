@@ -8,30 +8,32 @@ html {
   width: 100%;
   padding: 0;
   margin: 0;
-  position: absolute;
 }
 .bg-1 {
-  background-image: url("../images/bg-desktop-light.jpg");
-  height: 20%;
+  background-image: url("../images/bg-mobile-dark.jpg");
+  height: 25%;
   -webkit-background-size: cover auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -1;
 }
 .bg-2 {
-  background-color: white;
-  height: 80%;
-  z-index: -1;
+  background-color: hsl(235, 21%, 11%);
+  height: 75%;
 }
+
 .content {
   top: 0;
+  left: 0;
+  right: 0;
   position: absolute;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  max-width: 800px;
   width: 100%;
+  margin: 0 auto;
 }
 .bannerContent {
   position: relative;
@@ -139,6 +141,7 @@ html {
 .list-item:last-child {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  border: 0;
 }
 .buttons {
   width: 80%;
@@ -156,13 +159,13 @@ html {
   font-size: medium;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 600px) {
   .bg-1 {
-    background-image: url("../images/bg-mobile-dark.jpg");
-    height: 25%;
+    background-image: url("../images/bg-desktop-light.jpg");
+    height: 20%;
   }
   .bg-2 {
     background-color: hsl(235, 21%, 11%);
-    height: 75%;
+    height: 80%;
   }
 }
