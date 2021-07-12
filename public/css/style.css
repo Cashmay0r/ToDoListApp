@@ -69,7 +69,10 @@ html {
   margin-bottom: 5%;
   margin-top: 5%;
 }
-
+.crossItem {
+  font-size: small;
+  text-decoration: line-through;
+}
 .itemInput {
   background-color: hsl(235, 24%, 19%);
   margin-left: 5px;

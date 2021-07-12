@@ -1,0 +1,22 @@
+//Add New List item
+
+//Cross off list item
+
+//Add list item counter, eg.,5 items left.
+
+//Clear Completed List items Button
+
+//Sort by Active, Complete, or All
+
+//Drag and Drop List Item/s
+
+//Upload all list items to Database
+
+//Fetch all list items from database
+
+//Delete list item/s from database
+
+//Add Auth System
+
+//Add multiple todolist accounts with seperate list items.
+
