@@ -16,10 +16,12 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: -2;
 }
 .bg-2 {
   background-color: hsl(235, 21%, 11%);
   height: 75%;
+  z-index: -2;
 }
 
 .content {
@@ -133,7 +135,12 @@ html {
   margin-left: 5px;
   color: hsl(234, 39%, 85%);
 }
-/*Radio Button Styling*/
+.list-item img,
+li,
+label,
+input {
+  cursor: pointer;
+}
 
 .list-item p {
   color: hsl(234, 11%, 52%);
@@ -162,7 +169,36 @@ html {
   color: hsl(234, 11%, 52%);
   font-size: medium;
 }
+/*Checkbox Button Styling*/
 
+input[type="checkbox"] {
+  display: none;
+}
+label::before {
+  content: "";
+  background: url(../images/icon-check.svg), linear-gradient(to left top, #b561ed, #ad69f0, #a670f3, #9f77f5, #987df6, #9183f8, #8b89f9, #858efa, #7e95fb, #799bfb, #75a1fb, #72a6fa);
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+  padding: 2px;
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
+}
+input[type="checkbox"]:checked + label::before {
+  transform: scale(1);
+}
+label::after {
+  content: "";
+  border: 2px solid gray;
+  width: 21px;
+  height: 21px;
+
+  border-radius: 50%;
+  display: block;
+}
 @media only screen and (min-width: 600px) {
   .bg-1 {
     background-image: url("../images/bg-desktop-dark.jpg");
