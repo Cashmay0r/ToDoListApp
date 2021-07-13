@@ -18,6 +18,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
       delItem(del);
     });
   }
+  if (document.getElementById("clearComplete") != null) {
+    const clear = document.getElementById("clearComplete");
+    clear.addEventListener("click", () => {
+      clearComplete();
+    });
+  }
+  if (document.getElementById("toggleMode") != null) {
+    const btn = document.getElementById("toggleMode");
+    btn.addEventListener("click", () => {
+      toggleTheme();
+    });
+  }
   listCount();
 });
 
@@ -29,10 +41,7 @@ function newItem() {
     //Add a div with 3 elements inside to the list
     const div = document.createElement("div");
     div.setAttribute("class", "list-item");
-    //Add event listener for div click
-    div.addEventListener("click", () => {
-      crossList(div);
-    });
+
     list.appendChild(div);
     const input = document.createElement("input");
     input.setAttribute("class", "checkInput");
@@ -41,8 +50,14 @@ function newItem() {
     div.appendChild(input);
     const label = document.createElement("label");
     label.setAttribute("for", "checkInput");
+    label.addEventListener("click", () => {
+      crossList(div);
+    });
     div.appendChild(label);
     const listItem = document.createElement("li");
+    listItem.addEventListener("click", () => {
+      crossList(div);
+    });
     const textNode = document.createTextNode(item);
     listItem.appendChild(textNode);
     div.appendChild(listItem);
@@ -93,11 +108,32 @@ function listCount() {
   const count = document.getElementById("list").childElementCount;
   const txtCount = document.getElementById("listCount");
   txtCount.innerHTML = `${count - 1} Items Left`;
-  console.log(count);
 }
 
 //Clear Completed List items Button
-
+function clearComplete() {
+  const list = document.getElementById("list");
+  const el = list.getElementsByTagName("input");
+  console.log(el.length);
+  for (let i = 0; i < el.length; i++) {
+    console.log("I = ", i, "ElLength = ", el.length);
+    if (el[i].checked) {
+      delItem(el[i]);
+      i--;
+    }
+  }
+}
+//Toggle Dark/Light Mode
+function toggleTheme() {
+  const html = document.getElementById("html").classList;
+  if (html.contains("theme-dark")) {
+    html.remove("theme-dark");
+    html.add("theme-light");
+  } else if (html.contains("theme-light")) {
+    html.remove("theme-light");
+    html.add("theme-dark");
+  }
+}
 //Sort by Active, Complete, or All
 
 //Upload all list items to Database

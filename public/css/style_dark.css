@@ -9,19 +9,23 @@ html {
   padding: 0;
   margin: 0;
 }
+.bgGroup {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
 .bg-1 {
-  background-image: url("../images/bg-mobile-dark.jpg");
-  height: 25%;
+  background-image: var(--background-1-mobile);
+  min-height: 200px;
   -webkit-background-size: cover auto;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: -2;
+  flex: 0 1 auto;
 }
 .bg-2 {
-  background-color: hsl(235, 21%, 11%);
-  height: 75%;
-  z-index: -2;
+  background-color: var(--background-2);
+  flex: 1 1 auto;
 }
 
 .content {
@@ -55,6 +59,7 @@ html {
 }
 #toggleMode {
   justify-content: flex-end;
+  cursor: pointer;
 }
 .newItem {
   display: flex;
@@ -66,23 +71,24 @@ html {
   width: 80%;
   height: 30px;
   max-height: 30px;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--list-items);
   border-radius: 5px;
   margin-bottom: 5%;
   margin-top: 5%;
+  color: var(--font-primary);
 }
 .crossItem {
   font-size: small;
   text-decoration: line-through;
 }
 .itemInput {
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--list-items);
   margin-left: 5px;
   height: 100%;
   padding: 0;
   border: none;
   outline: none;
-  color: hsl(234, 39%, 85%);
+  color: var(--font-primary);
   font-size: medium;
 }
 .radioInput {
@@ -90,7 +96,8 @@ html {
   margin-right: 5px;
 }
 .newItem input::placeholder {
-  color: hsl(234, 11%, 52%);
+  color: var(--font-secondary);
+
   font-size: small;
 }
 
@@ -107,12 +114,12 @@ html {
   flex-direction: row;
   align-items: center;
   width: 100%;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--list-items);
   text-align: left;
   list-style-type: none;
   margin: 0px;
   padding: 10px;
-  height: 30px;
+  height: 40px;
   max-height: 30px;
   color: white;
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
@@ -126,14 +133,14 @@ html {
   margin: 0;
   height: 100%;
   width: 100%;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--list-items);
   font-size: small;
 }
 .list-item li {
   margin-right: auto;
   font-size: small;
   margin-left: 5px;
-  color: hsl(234, 39%, 85%);
+  color: var(--font-primary);
 }
 .list-item img,
 li,
@@ -143,7 +150,7 @@ input {
 }
 
 .list-item p {
-  color: hsl(234, 11%, 52%);
+  color: var(--font-lightgrey);
 }
 .list-item:first-child {
   border-top-left-radius: 5px;
@@ -160,13 +167,13 @@ input {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--list-items);
   padding: 10px;
   border-radius: 5px;
 }
 .buttons a {
   margin: 5px;
-  color: hsl(234, 11%, 52%);
+  color: var(--font-secondary);
   font-size: medium;
 }
 /*Checkbox Button Styling*/
@@ -201,15 +208,20 @@ label::after {
 }
 @media only screen and (min-width: 600px) {
   .bg-1 {
-    background-image: url("../images/bg-desktop-dark.jpg");
+    background-image: var(--background-1-desktop);
     height: 20%;
+    min-height: 300px;
   }
   .bg-2 {
-    background-color: hsl(235, 21%, 11%);
-    height: 80%;
+    background-color: var(--background-2);
+  }
+
+  .bannerContent {
+    margin: 7%;
   }
   .newItem {
-    margin-bottom: 3%;
+    margin: 3%;
+    margin-top: 0;
   }
   .list {
     margin-bottom: 0;

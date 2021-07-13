@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark" id="html">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/vars.css" />
+    <link rel="stylesheet" href="./css/style_dark.css" />
     <script src="./js/main.js"></script>
     <title>Frontend Mentor | Todo app</title>
 
@@ -24,23 +25,23 @@
     </style>
   </head>
   <body>
-    <div class="bg-1"></div>
-    <div class="bg-2"></div>
-
+    <div class="bgGroup light">
+      <div class="bg-1"></div>
+      <div class="bg-2"></div>
+    </div>
     <div class="content">
       <div class="bannerContent">
         <h1 id="title">T O D O</h1>
         <img id="toggleMode" src="./images/icon-sun.svg" />
       </div>
       <div class="newItem">
-        <input class="radioInput" type="radio" name="radio" />
         <input class="itemInput" type="text" id="itemInput" placeholder="Create a New Todo..." />
       </div>
 
       <div class="list" id="list">
         <div class="list-item" id="lastEl">
           <p id="listCount"></p>
-          <p>Clear Completed</p>
+          <p id="clearComplete">Clear Completed</p>
         </div>
       </div>
       <div class="buttons">
