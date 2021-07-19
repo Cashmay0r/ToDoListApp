@@ -2,10 +2,13 @@ import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
+import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import { List } from "./models/list.js";
 
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 const dbURI = "mongodb+srv://admin:Missydead12!@cluster0.yqqde.mongodb.net/ToDoList?retryWrites=true&w=majority";
 
 mongoose
@@ -21,8 +24,37 @@ mongoose
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public/js"));
+app.use(express.static(__dirname + "/public/css"));
+app.use(express.static(__dirname + "/public/images"));
 
+app.post("/add-list", (req, res) => {
+  console.log(req.body.itemNo);
+
+  /*  const list = new List({
+    req.bodyParser.itemNo,
+  }); */
+
+  /* list
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    }); */
+});
+
+app.get("/api", (req, res) => {
+  List.find()
+    .then((result) => {
+      res.json(result);
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 app.get("/", (req, res) => {
-  res.sendFile("./public/index.html", { root: __dirname });
+  res.sendFile(__dirname + "/public/index.html");
 });

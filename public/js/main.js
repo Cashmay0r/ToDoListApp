@@ -31,9 +31,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   listCount();
+  //request();
+  sendItem();
 });
-
-//Add New List item
+const request = async () => {
+  const res = await fetch("/api");
+  const obj = await res.json();
+  console.log(obj);
+};
+const sendItem = async () => {
+  const list = {
+    itemNo: 4,
+    message: "Testing MongoDB 4",
+    checked: false,
+  };
+  const test = JSON.stringify(list);
+  console.log(test);
+  const req = await fetch("./add-list", { method: "post", body: test });
+};
+// Add New List item
 function newItem() {
   const item = document.getElementById("itemInput").value;
   const list = document.getElementById("list");
