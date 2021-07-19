@@ -1,15 +1,14 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-
+import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import { List } from "./models/list.js";
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-const dbURI = "mongodb+srv://admin:Missydead12!@cluster0.yqqde.mongodb.net/ToDoList?retryWrites=true&w=majority";
+const env = dotenv.config();
+const dbURI = process.env.MONGO_API_KEY;
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -38,9 +37,11 @@ app.get("/api", (req, res) => {
       console.log(err);
     });
 });
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
+
 app.post("/add-list", (req, res) => {
   const list = new List({
     itemNo: req.body.itemNo,

@@ -30,15 +30,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
       toggleTheme();
     });
   }
+  const listData = fetchList()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+  //newItem(listData);
   listCount();
-  request();
+  //request();
   //sendItem();
 });
-const request = async () => {
-  const res = await fetch("/api");
-  const obj = await res.json();
-  console.log(obj);
-};
+
 const sendItem = async () => {
   const list = {
     itemNo: 4,
@@ -49,7 +54,8 @@ const sendItem = async () => {
   const req = await fetch("/add-list", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(list) });
 };
 // Add New List item
-function newItem() {
+function newItem(data) {
+  console.log(data);
   const item = document.getElementById("itemInput").value;
   const list = document.getElementById("list");
   if (item.trim() != "") {
@@ -154,7 +160,12 @@ function toggleTheme() {
 //Upload all list items to Database
 
 //Fetch all list items from database
+const fetchList = async () => {
+  const getData = await fetch("/api");
+  const data = await getData.json();
 
+  return data;
+};
 //Delete list item/s from database
 
 //Add Auth System
