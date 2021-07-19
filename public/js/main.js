@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
   }
   listCount();
-  //request();
-  sendItem();
+  request();
+  //sendItem();
 });
 const request = async () => {
   const res = await fetch("/api");
@@ -45,9 +45,8 @@ const sendItem = async () => {
     message: "Testing MongoDB 4",
     checked: false,
   };
-  const test = JSON.stringify(list);
-  console.log(test);
-  const req = await fetch("./add-list", { method: "post", body: test });
+
+  const req = await fetch("/add-list", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(list) });
 };
 // Add New List item
 function newItem() {

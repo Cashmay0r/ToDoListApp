@@ -28,23 +28,6 @@ app.use(express.static(__dirname + "/public/js"));
 app.use(express.static(__dirname + "/public/css"));
 app.use(express.static(__dirname + "/public/images"));
 
-app.post("/add-list", (req, res) => {
-  console.log(req.body.itemNo);
-
-  /*  const list = new List({
-    req.bodyParser.itemNo,
-  }); */
-
-  /* list
-    .save()
-    .then((result) => {
-      res.send(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    }); */
-});
-
 app.get("/api", (req, res) => {
   List.find()
     .then((result) => {
@@ -57,4 +40,20 @@ app.get("/api", (req, res) => {
 });
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
+});
+app.post("/add-list", (req, res) => {
+  const list = new List({
+    itemNo: req.body.itemNo,
+    message: req.body.message,
+    checked: req.body.checked,
+  });
+
+  list
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
