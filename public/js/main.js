@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   listCount();
   //request();
   //sendItem();
+  fetchList();
 });
 
 const sendItem = async () => {
@@ -161,7 +162,7 @@ function toggleTheme() {
 
 //Fetch all list items from database
 const fetchList = async () => {
-  const getData = await fetch("/api");
+  const getData = await fetch("/get-list");
   const data = await getData.json();
 
   return data;

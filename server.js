@@ -7,14 +7,17 @@ import mongoose from "mongoose";
 import { List } from "./models/list.js";
 
 const app = express();
+
 const env = dotenv.config();
 const dbURI = process.env.MONGO_API_KEY;
+const port = process.env.PORT || 3000;
 
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => {
-    app.listen(3000);
+    app.listen(port);
     console.log("Connected to Database");
+    console.log(`Server opened at http://localhost:${port}`);
   })
   .catch((err) => {
     console.log("Not able to connect to Database");
@@ -27,7 +30,7 @@ app.use(express.static(__dirname + "/public/js"));
 app.use(express.static(__dirname + "/public/css"));
 app.use(express.static(__dirname + "/public/images"));
 
-app.get("/api", (req, res) => {
+app.get("/get-list", (req, res) => {
   List.find()
     .then((result) => {
       res.json(result);
