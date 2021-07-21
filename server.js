@@ -59,7 +59,6 @@ app.get("/", (req, res) => {
 
 //Getting post data passed from front-end and uplaoding to MongoDB
 app.post("/add-list", jsonParser, (req, res) => {
-  console.log(req.body);
   const list = new List({
     itemNo: req.body.itemNo,
     message: req.body.message,
@@ -75,8 +74,8 @@ app.post("/add-list", jsonParser, (req, res) => {
       console.log(err);
     });
 });
+//Delete Item from
 app.post("/del-list", jsonParser, (req, res) => {
-  console.log(req.body.uid);
   List.deleteOne({ _id: req.body.uid })
     .then((result) => {
       res.send(result);

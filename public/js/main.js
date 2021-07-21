@@ -161,14 +161,9 @@ function listCount() {
 function clearComplete() {
   const list = document.getElementById("list");
   const el = list.getElementsByTagName("input");
-  console.log(el.length);
-  for (let i = 0; i < el.length; i++) {
-    console.log("I = ", i, "ElLength = ", el.length);
-    if (el[i].checked) {
-      delItem(el[i]);
-      i--;
-    }
-  }
+
+  //Need to check that the element is checked before selecting each element
+  //Need to get parent div with UID linked to the id attribute then loop all eligible elements to delete them all
 }
 //Toggle Dark/Light Mode
 function toggleTheme() {
