@@ -183,7 +183,7 @@ input[type="checkbox"] {
 }
 label::before {
   content: "";
-  background: url(/icon-check.svg), linear-gradient(to left top, #b561ed, #ad69f0, #a670f3, #9f77f5, #987df6, #9183f8, #8b89f9, #858efa, #7e95fb, #799bfb, #75a1fb, #72a6fa);
+  background: url(./icon-check.svg), linear-gradient(to left top, #b561ed, #ad69f0, #a670f3, #9f77f5, #987df6, #9183f8, #8b89f9, #858efa, #7e95fb, #799bfb, #75a1fb, #72a6fa);
   background-position: center;
   background-repeat: no-repeat;
   width: 21px;

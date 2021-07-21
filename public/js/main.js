@@ -84,7 +84,7 @@ function newItem(data) {
     listItem.appendChild(textNode);
     div.appendChild(listItem);
     const img = document.createElement("img");
-    img.setAttribute("src", "./images/icon-cross.svg");
+    img.setAttribute("src", "./icon-cross.svg");
     img.setAttribute("id", "delItem");
     //Add event listener to cross
     img.addEventListener("click", () => {

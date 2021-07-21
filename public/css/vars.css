@@ -1,6 +1,6 @@
 .theme-light {
-  --background-1-mobile: url("/bg-mobile-light.jpg");
-  --background-1-desktop: url("/bg-desktop-light.jpg");
+  --background-1-mobile: url("./bg-mobile-light.jpg");
+  --background-1-desktop: url("./bg-desktop-light.jpg");
   --background-2: hsl(236, 33%, 92%);
   --list-items: hsl(0, 0%, 98%);
   --font-primary: hsl(235, 19%, 35%);
@@ -8,8 +8,8 @@
   --font-lightgrey: hsl(233, 11%, 84%);
 }
 .theme-dark {
-  --background-1-mobile: url("/bg-mobile-dark.jpg");
-  --background-1-desktop: url("/bg-desktop-dark.jpg");
+  --background-1-mobile: url("./bg-mobile-dark.jpg");
+  --background-1-desktop: url("./bg-desktop-dark.jpg");
   --background-2: hsl(235, 21%, 11%);
   --list-items: hsl(235, 24%, 19%);
   --font-primary: hsl(234, 39%, 85%);
