@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       if (e.keyCode === 13) {
         e.preventDefault();
         //Trigger new Item function
-        newItem();
+        addItem();
       }
     });
   }
@@ -30,45 +30,61 @@ document.addEventListener("DOMContentLoaded", (event) => {
       toggleTheme();
     });
   }
-  const listData = fetchList()
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 
-  //newItem(listData);
   listCount();
   //request();
   //sendItem();
   fetchList();
 });
 
-const sendItem = async () => {
-  const list = {
-    itemNo: 4,
-    message: "Testing MongoDB 4",
-    checked: false,
-  };
+//Fetch all list items from database
+const fetchList = async () => {
+  const getData = await fetch("/get-list");
+  const data = await getData.json();
 
-  const req = await fetch("/add-list", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(list) });
+  data.forEach((el) => {
+    newItem(el);
+  });
 };
+//
+const addItem = async () => {
+  const item = document.getElementById("itemInput").value;
+  const list = {
+    itemNo: 1,
+    message: `${item}`,
+    checked: true,
+  };
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(list),
+  };
+  try {
+    const req = await fetch("/add-list", options);
+    console.log("Item Successfully Uploaded to Datatabase");
+    location.reload();
+  } catch {
+    alert("Item not able to be uploaded to Database");
+  }
+};
+
 // Add New List item
 function newItem(data) {
   console.log(data);
-  const item = document.getElementById("itemInput").value;
   const list = document.getElementById("list");
-  if (item.trim() != "") {
+  if (data != undefined) {
     //Add a div with 3 elements inside to the list
     const div = document.createElement("div");
     div.setAttribute("class", "list-item");
-
+    div.setAttribute("id", data._id);
     list.appendChild(div);
     const input = document.createElement("input");
     input.setAttribute("class", "checkInput");
     input.setAttribute("type", "checkbox");
     input.setAttribute("name", "checkbox");
+    if (data.checked) {
+      input.setAttribute("checked", true);
+    }
     div.appendChild(input);
     const label = document.createElement("label");
     label.setAttribute("for", "checkInput");
@@ -80,7 +96,7 @@ function newItem(data) {
     listItem.addEventListener("click", () => {
       crossList(div);
     });
-    const textNode = document.createTextNode(item);
+    const textNode = document.createTextNode(data.message);
     listItem.appendChild(textNode);
     div.appendChild(listItem);
     const img = document.createElement("img");
@@ -115,16 +131,25 @@ function crossList(div) {
     checkBox.setAttribute("checked", "");
   }
 }
+
 //Delete item
-function delItem(el) {
+const delItem = async (el) => {
   const parent = el.parentElement;
-  console.log(parent);
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
+  const uid = parent.id;
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ uid }),
+  };
+  try {
+    const req = await fetch("/del-list", options);
+    console.log("Item Successfuly Deleted From Database");
+    location.reload();
+  } catch {
+    alert("Item Could not be Deleted from Database");
   }
-  parent.remove();
-  listCount();
-}
+};
+
 //Add list item counter, eg.,5 items left.
 function listCount() {
   const count = document.getElementById("list").childElementCount;
@@ -160,13 +185,6 @@ function toggleTheme() {
 
 //Upload all list items to Database
 
-//Fetch all list items from database
-const fetchList = async () => {
-  const getData = await fetch("/get-list");
-  const data = await getData.json();
-
-  return data;
-};
 //Delete list item/s from database
 
 //Add Auth System
