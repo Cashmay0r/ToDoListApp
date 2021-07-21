@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/89cec965-ade4-4ffb-923f-048ad2128518/resourceGroups/learn-e199718d-4538-4cfd-a486-b3f6c8d9f35f/providers/Microsoft.Web/sites/toodoolist",
+    "appService.deploySubpath": "."
+}
