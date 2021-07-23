@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 const fetchList = async () => {
   const getData = await fetch("/get-list");
   const data = await getData.json();
+  const list = document.getElementById("list");
 
   data.forEach((el) => {
     newItem(el);
@@ -62,6 +63,7 @@ const addItem = async () => {
   try {
     const req = await fetch("/add-list", options);
     console.log("Item Successfully Uploaded to Datatabase");
+
     location.reload();
   } catch {
     alert("Item not able to be uploaded to Database");
@@ -93,11 +95,13 @@ function newItem(data) {
     });
     div.appendChild(label);
     const listItem = document.createElement("li");
+    listItem.setAttribute("class", "crossItem");
     listItem.addEventListener("click", () => {
       crossList(div);
     });
     const textNode = document.createTextNode(data.message);
     listItem.appendChild(textNode);
+
     div.appendChild(listItem);
     const img = document.createElement("img");
     img.setAttribute("src", "./icon-cross.svg");
@@ -144,6 +148,7 @@ const delItem = async (el) => {
   try {
     const req = await fetch("/del-list", options);
     console.log("Item Successfuly Deleted From Database");
+
     location.reload();
   } catch {
     alert("Item Could not be Deleted from Database");
