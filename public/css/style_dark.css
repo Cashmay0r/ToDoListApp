@@ -109,6 +109,13 @@ html {
   width: 80%;
   margin-bottom: 5%;
 }
+.counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
 .list-item {
   display: flex;
   flex-direction: row;
@@ -125,6 +132,18 @@ html {
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
 }
 .list p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  color: white;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--list-items);
+  font-size: small;
+}
+.counter p {
   display: flex;
   flex-direction: row;
   align-items: center;

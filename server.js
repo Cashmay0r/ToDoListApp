@@ -84,3 +84,22 @@ app.post("/del-list", jsonParser, (req, res) => {
       console.log(err);
     });
 });
+
+app.post("/update-list", jsonParser, (req, res) => {
+  console.log(req.body);
+  const list = {
+    _id: req.body.uid,
+    $set: {
+      checked: req.body.checked,
+    },
+  };
+
+  List.updateOne(list)
+    .then((result) => {
+      console.log(result);
+      res.send(result);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});

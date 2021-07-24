@@ -42,18 +42,22 @@ const fetchList = async () => {
   const getData = await fetch("/get-list");
   const data = await getData.json();
   const list = document.getElementById("list");
+  //Remove all current list items so duplications don't happen
 
+  list.innerHTML = "";
+  //For each database item found a new list item is created
   data.forEach((el) => {
     newItem(el);
   });
 };
+
 //
 const addItem = async () => {
   const item = document.getElementById("itemInput").value;
   const list = {
     itemNo: 1,
     message: `${item}`,
-    checked: true,
+    checked: false,
   };
   const options = {
     method: "POST",
@@ -64,7 +68,8 @@ const addItem = async () => {
     const req = await fetch("/add-list", options);
     console.log("Item Successfully Uploaded to Datatabase");
 
-    location.reload();
+    fetchList();
+    const item = (document.getElementById("itemInput").innerHTML = "");
   } catch {
     alert("Item not able to be uploaded to Database");
   }
@@ -76,6 +81,7 @@ function newItem(data) {
   const list = document.getElementById("list");
   if (data != undefined) {
     //Add a div with 3 elements inside to the list
+
     const div = document.createElement("div");
     div.setAttribute("class", "list-item");
     div.setAttribute("id", data._id);
@@ -95,7 +101,10 @@ function newItem(data) {
     });
     div.appendChild(label);
     const listItem = document.createElement("li");
-    listItem.setAttribute("class", "crossItem");
+    if (data.checked) {
+      listItem.setAttribute("class", "crossItem");
+    }
+
     listItem.addEventListener("click", () => {
       crossList(div);
     });
@@ -111,9 +120,8 @@ function newItem(data) {
       delItem(img);
     });
     div.appendChild(img);
-    //Add list item before last element in list
-    const lastEl = document.getElementById("lastEl");
-    list.insertBefore(div, lastEl);
+    //Add the list item to the div
+    list.appendChild(div);
     //Clear input after item has been added
     document.getElementById("itemInput").value = "";
     listCount();
@@ -122,19 +130,35 @@ function newItem(data) {
   }
 }
 //Cross off list item
-function crossList(div) {
-  const txt = div.getElementsByTagName("li")[0];
-  const checkBox = div.getElementsByTagName("input")[0];
-  console.log(txt);
+const crossList = async (div) => {
+  console.log(div);
+  const txt = div.getElementsByTagName("input")[0];
+  console.log(txt.hasAttribute("checked"));
+  const uid = div.id;
+  let checked = false;
 
-  if (txt.classList.contains("crossItem")) {
-    txt.classList.remove("crossItem");
-    checkBox.removeAttribute("checked");
-  } else {
-    txt.setAttribute("class", "crossItem");
-    checkBox.setAttribute("checked", "");
+  console.log(txt);
+  if (!txt.hasAttribute("checked")) {
+    //Change to true if item is checked
+    checked = true;
   }
-}
+
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ uid, checked }),
+  };
+
+  //Call the API to update the list item
+  try {
+    const req = await fetch("/update-list", options);
+    console.log("Item Successfully Updated");
+
+    fetchList();
+  } catch {
+    alert("Item not able to be Updated");
+  }
+};
 
 //Delete item
 const delItem = async (el) => {
@@ -149,7 +173,7 @@ const delItem = async (el) => {
     const req = await fetch("/del-list", options);
     console.log("Item Successfuly Deleted From Database");
 
-    location.reload();
+    fetchList();
   } catch {
     alert("Item Could not be Deleted from Database");
   }
@@ -159,7 +183,7 @@ const delItem = async (el) => {
 function listCount() {
   const count = document.getElementById("list").childElementCount;
   const txtCount = document.getElementById("listCount");
-  txtCount.innerHTML = `${count - 1} Items Left`;
+  txtCount.innerHTML = `${count} Items Left`;
 }
 
 //Clear Completed List items Button
