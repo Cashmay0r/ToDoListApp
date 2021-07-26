@@ -7,10 +7,6 @@ const listSchema = new Schema(
       type: String,
       required: true,
     },
-    itemNo: {
-      type: Number,
-      required: true,
-    },
     message: {
       type: String,
       required: true,

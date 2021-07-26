@@ -1,2 +1,16 @@
-//Clear completed items needs to also delete items from database, make fully functional
+//Complete small styling details in CSS
+    -Add a max list height, allow for scrollable if items exceed height
+    -Make the input for adding an item full width
+    -Highlight checkbox with gradient when user is hovering over
+    -Change input pointer to blinking line
+    -Change font colour on crossed out items
+//Add a Login and Register Page
+//Implement an Authentication Service and use Express to block routes unless user is authenticated
+//Modify database to allow for individual todolists based on the user profile
+//Add transitions and maybe some animations
+    -Dark/Light theme image transform between sun and moon depending on theme application
+    -List items slide into the page on initial load and when new item is added
+    -Items similarly slide off the page when they are deleted
+    -Delete button slighty expands on hover
+
 

@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
     <link rel="stylesheet" href="./vars.css" />
     <link rel="stylesheet" href="./style_dark.css" />
+    <script src="./crud.js"></script>
     <script src="./main.js"></script>
     <title>Frontend Mentor | Todo app</title>
 
@@ -37,8 +38,9 @@
       <div class="newItem">
         <input class="itemInput" type="text" id="itemInput" placeholder="Create a New Todo..." />
       </div>
-
-      <div class="list" id="list"></div>
+      <div class="listContainer">
+        <div class="list" id="list"></div>
+      </div>
       <div class="counter">
         <div class="list-item" id="lastEl">
           <p id="listCount"></p>

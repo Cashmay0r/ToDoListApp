@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  fetchList();
   if (document.getElementById("itemInput") != null) {
     const input = document.getElementById("itemInput");
     //Event Listener for a key pressed
@@ -30,62 +31,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
       toggleTheme();
     });
   }
-
   listCount();
-  //request();
-  //sendItem();
-  fetchList();
 });
 
-//Fetch all list items from database
-const fetchList = async () => {
-  const getData = await fetch("/get-list");
-  const data = await getData.json();
-  const list = document.getElementById("list");
-  //Remove all current list items so duplications don't happen
-
-  list.innerHTML = "";
-  //For each database item found a new list item is created
-  data.forEach((el) => {
-    newItem(el);
-  });
-};
-
-//
-const addItem = async () => {
-  const item = document.getElementById("itemInput").value;
-  const list = {
-    itemNo: 1,
-    message: `${item}`,
-    checked: false,
-  };
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(list),
-  };
-  try {
-    const req = await fetch("/add-list", options);
-    console.log("Item Successfully Uploaded to Datatabase");
-
-    fetchList();
-    const item = (document.getElementById("itemInput").innerHTML = "");
-  } catch {
-    alert("Item not able to be uploaded to Database");
-  }
-};
-
-// Add New List item
+//Add New List item
 function newItem(data) {
   console.log(data);
   const list = document.getElementById("list");
   if (data != undefined) {
-    //Add a div with 3 elements inside to the list
-
+    //Create list-item Div
     const div = document.createElement("div");
     div.setAttribute("class", "list-item");
     div.setAttribute("id", data.id);
     list.appendChild(div);
+    //Create input element inside of Div
     const input = document.createElement("input");
     input.setAttribute("class", "checkInput");
     input.setAttribute("type", "checkbox");
@@ -94,28 +53,31 @@ function newItem(data) {
       input.setAttribute("checked", true);
     }
     div.appendChild(input);
+    //Create label element inside of Div
     const label = document.createElement("label");
     label.setAttribute("for", "checkInput");
     label.addEventListener("click", () => {
-      crossList(div);
+      updateItem(div);
     });
     div.appendChild(label);
+    //Create li element inside of Div
     const listItem = document.createElement("li");
     if (data.checked) {
       listItem.setAttribute("class", "crossItem");
     }
 
     listItem.addEventListener("click", () => {
-      crossList(div);
+      updateItem(div);
     });
     const textNode = document.createTextNode(data.message);
     listItem.appendChild(textNode);
 
     div.appendChild(listItem);
+    //Create img element inside of Div
     const img = document.createElement("img");
     img.setAttribute("src", "./icon-cross.svg");
     img.setAttribute("id", "delItem");
-    //Add event listener to cross
+    //Add event listener to cross img
     img.addEventListener("click", () => {
       delItem(img);
     });
@@ -129,65 +91,10 @@ function newItem(data) {
     alert("Not a valid input");
   }
 }
-//Cross off list item
-const crossList = async (div) => {
-  console.log(div);
-  const txt = div.getElementsByTagName("input")[0];
-  const listItem = div.getElementsByTagName("li")[0];
-  const uid = div.id;
-  let checked = txt.hasAttribute("checked");
-  //If element has checked, we remove it, if element does not have checked, we add it
-  if (!txt.hasAttribute("checked")) {
-    //Add checked to element
-    checked = true;
-    try {
-      const req = await fetch("/update-list", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ uid, checked }),
-      });
-      //Add checked status and cross out message
-      txt.setAttribute("checked", true);
-      listItem.setAttribute("class", "crossItem");
-    } catch {
-      
-    }
-  } else {
-    //Remove checked from element
-    checked = false;
-    const req = await fetch("/update-list", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid, checked }),
-    });
-    //Remove checked status and crossed out line through message
-    txt.removeAttribute("checked");
-    listItem.removeAttribute("class", "crossItem");
-  }
-
-  //Call the API to update the list item
-};
-
-//Delete item
-const delItem = async (el) => {
-  const parent = el.parentElement;
-  const uid = parent.id;
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ uid }),
-  };
-  try {
-    const req = await fetch("/del-list", options);
-    console.log("Item Successfuly Deleted From Database");
-    fetchList();
-  } catch {
-    alert("Item Could not be Deleted from Database");
-  }
-};
 
 //Add list item counter, eg.,5 items left.
 function listCount() {
+  //Returns amount of children in parent element
   const count = document.getElementById("list").childElementCount;
   const txtCount = document.getElementById("listCount");
   txtCount.innerHTML = `${count} Items Left`;
@@ -196,10 +103,15 @@ function listCount() {
 //Clear Completed List items Button
 function clearComplete() {
   const list = document.getElementById("list");
-  const el = list.getElementsByTagName("input");
-
-  //Need to check that the element is checked before selecting each element
-  //Need to get parent div with UID linked to the id attribute then loop all eligible elements to delete them all
+  const input = list.getElementsByTagName("input");
+  //Converting the HTMLCollection into a simple array so I can use forEach
+  const arr = [...input];
+  arr.forEach((element) => {
+    //If input has attribute checked
+    if (element.hasAttribute("checked")) {
+      delItem(element);
+    }
+  });
 }
 //Toggle Dark/Light Mode
 function toggleTheme() {
@@ -213,10 +125,6 @@ function toggleTheme() {
   }
 }
 //Sort by Active, Complete, or All
-
-//Upload all list items to Database
-
-//Delete list item/s from database
 
 //Add Auth System
 
