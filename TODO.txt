@@ -1,5 +1,5 @@
 //Complete small styling details in CSS
-    -Add a max list height, allow for scrollable if items exceed height
+    -Checked items are not staying with the item list when scrollable
     -Make the input for adding an item full width
     -Highlight checkbox with gradient when user is hovering over
     -Change input pointer to blinking line
