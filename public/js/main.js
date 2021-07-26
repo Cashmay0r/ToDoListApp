@@ -84,7 +84,7 @@ function newItem(data) {
 
     const div = document.createElement("div");
     div.setAttribute("class", "list-item");
-    div.setAttribute("id", data._id);
+    div.setAttribute("id", data.id);
     list.appendChild(div);
     const input = document.createElement("input");
     input.setAttribute("class", "checkInput");
@@ -133,31 +133,39 @@ function newItem(data) {
 const crossList = async (div) => {
   console.log(div);
   const txt = div.getElementsByTagName("input")[0];
-  console.log(txt.hasAttribute("checked"));
+  const listItem = div.getElementsByTagName("li")[0];
   const uid = div.id;
-  let checked = false;
-
-  console.log(txt);
+  let checked = txt.hasAttribute("checked");
+  //If element has checked, we remove it, if element does not have checked, we add it
   if (!txt.hasAttribute("checked")) {
-    //Change to true if item is checked
+    //Add checked to element
     checked = true;
+    try {
+      const req = await fetch("/update-list", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ uid, checked }),
+      });
+      //Add checked status and cross out message
+      txt.setAttribute("checked", true);
+      listItem.setAttribute("class", "crossItem");
+    } catch {
+      
+    }
+  } else {
+    //Remove checked from element
+    checked = false;
+    const req = await fetch("/update-list", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ uid, checked }),
+    });
+    //Remove checked status and crossed out line through message
+    txt.removeAttribute("checked");
+    listItem.removeAttribute("class", "crossItem");
   }
-
-  const options = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ uid, checked }),
-  };
 
   //Call the API to update the list item
-  try {
-    const req = await fetch("/update-list", options);
-    console.log("Item Successfully Updated");
-
-    fetchList();
-  } catch {
-    alert("Item not able to be Updated");
-  }
 };
 
 //Delete item
@@ -172,7 +180,6 @@ const delItem = async (el) => {
   try {
     const req = await fetch("/del-list", options);
     console.log("Item Successfuly Deleted From Database");
-
     fetchList();
   } catch {
     alert("Item Could not be Deleted from Database");

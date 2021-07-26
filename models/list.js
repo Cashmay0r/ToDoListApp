@@ -3,6 +3,10 @@ const { Schema } = mongoose;
 
 const listSchema = new Schema(
   {
+    id: {
+      type: String,
+      required: true,
+    },
     itemNo: {
       type: Number,
       required: true,

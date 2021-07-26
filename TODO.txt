@@ -1,3 +1,2 @@
-
 //Clear completed items needs to also delete items from database, make fully functional
-//Figure out way to apply animation to checkcircle when clicked, used to do it when the css class was applied but now I just refresh the list each time i use the database
+

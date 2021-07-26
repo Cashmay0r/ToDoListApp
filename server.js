@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import { List } from "./models/list.js";
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 //Don't delete env
@@ -60,6 +61,7 @@ app.get("/", (req, res) => {
 //Getting post data passed from front-end and uplaoding to MongoDB
 app.post("/add-list", jsonParser, (req, res) => {
   const list = new List({
+    id: uuidv4(),
     itemNo: req.body.itemNo,
     message: req.body.message,
     checked: req.body.checked,
@@ -76,7 +78,7 @@ app.post("/add-list", jsonParser, (req, res) => {
 });
 //Delete Item from
 app.post("/del-list", jsonParser, (req, res) => {
-  List.deleteOne({ _id: req.body.uid })
+  List.deleteOne({ id: req.body.uid })
     .then((result) => {
       res.send(result);
     })
@@ -87,14 +89,9 @@ app.post("/del-list", jsonParser, (req, res) => {
 
 app.post("/update-list", jsonParser, (req, res) => {
   console.log(req.body);
-  const list = {
-    _id: req.body.uid,
-    $set: {
-      checked: req.body.checked,
-    },
-  };
+  const uid = req.body.uid.toString();
 
-  List.updateOne(list)
+  List.updateOne({ id: uid }, { $set: { checked: req.body.checked } })
     .then((result) => {
       console.log(result);
       res.send(result);
