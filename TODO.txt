@@ -1,9 +1,5 @@
 //Complete small styling details in CSS
-    -Checked items are not staying with the item list when scrollable
-    -Make the input for adding an item full width
-    -Highlight checkbox with gradient when user is hovering over
-    -Change input pointer to blinking line
-    -Change font colour on crossed out items
+    -Figure outhow to apply a gradient as the hover colour
 //Add a Login and Register Page
 //Implement an Authentication Service and use Express to block routes unless user is authenticated
 //Modify database to allow for individual todolists based on the user profile

@@ -44,6 +44,10 @@ function newItem(data) {
     div.setAttribute("class", "list-item");
     div.setAttribute("id", data.id);
     list.appendChild(div);
+    //Create another div to house the input and label
+    const divInner = document.createElement("div");
+    divInner.setAttribute("class", "listCheckBox");
+    div.appendChild(divInner);
     //Create input element inside of Div
     const input = document.createElement("input");
     input.setAttribute("class", "checkInput");
@@ -52,14 +56,16 @@ function newItem(data) {
     if (data.checked) {
       input.setAttribute("checked", true);
     }
-    div.appendChild(input);
+    divInner.appendChild(input);
     //Create label element inside of Div
     const label = document.createElement("label");
     label.setAttribute("for", "checkInput");
+    label.setAttribute("class", "checkBoxLabel");
     label.addEventListener("click", () => {
       updateItem(div);
     });
-    div.appendChild(label);
+    divInner.appendChild(label);
+
     //Create li element inside of Div
     const listItem = document.createElement("li");
     if (data.checked) {
