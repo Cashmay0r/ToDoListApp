@@ -6,6 +6,7 @@
   --font-primary: hsl(235, 19%, 35%);
   --font-secondary: hsl(236, 9%, 61%);
   --font-lightgrey: hsl(233, 11%, 84%);
+  --btn-gradient: linear-gradient(to left top, #b561ed, #ad69f0, #a670f3, #9f77f5, #987df6, #9183f8, #8b89f9, #858efa, #7e95fb, #799bfb, #75a1fb, #72a6fa);
 }
 .theme-dark {
   --background-1-mobile: url("./bg-mobile-dark.jpg");
@@ -19,6 +20,6 @@
   --border-colour: rgba(191, 191, 191, 0.2);
   --btn-gradient: linear-gradient(to left top, #b561ed, #ad69f0, #a670f3, #9f77f5, #987df6, #9183f8, #8b89f9, #858efa, #7e95fb, #799bfb, #75a1fb, #72a6fa);
 }
-.crossItem{
+.crossItem {
   --font-primary: hsl(234, 11%, 52%);
 }
