@@ -166,7 +166,7 @@ html {
   padding: 10px;
   height: 30px;
   max-height: 30px;
-  color: white;
+  color: var(--font-primary);
   border-bottom: 1px solid rgba(191, 191, 191, 0.2);
 }
 
@@ -175,7 +175,7 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  color: white;
+  color: var(--title-white);
   margin: 0;
   height: 100%;
   width: 100%;
@@ -187,7 +187,7 @@ html {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  color: white;
+  color: var(--title-white);
   margin: 0;
   height: 100%;
   width: 100%;
@@ -207,7 +207,7 @@ html {
 }
 .list-item img,
 li,
-label,
+.listCheckBox label,
 input {
   cursor: pointer;
 }
@@ -246,11 +246,11 @@ input {
 }
 /*Checkbox Button Styling*/
 
-input[type="checkbox"] {
+.listCheckBox input[type="checkbox"] {
   display: none;
 }
 
-label::before {
+.listCheckBox label::before {
   content: "";
   background: url(./icon-check.svg), var(--btn-gradient);
   background-position: center;
@@ -264,10 +264,10 @@ label::before {
   transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
   z-index: 1;
 }
-input[type="checkbox"]:checked + label::before {
+.listCheckBox input[type="checkbox"]:checked + label::before {
   transform: scale(1);
 }
-label::after {
+.listCheckBox label::after {
   content: "";
   border: 2px solid gray;
   width: 21px;
@@ -275,9 +275,9 @@ label::after {
   border-radius: 50%;
   display: block;
 }
-label:hover::after {
+.listCheckBox label:hover::after {
   position: relative;
-  border: 2px solid white;
+  border: 2px solid var(--title-white);
   display: block;
   border-radius: 50%;
   z-index: 1;

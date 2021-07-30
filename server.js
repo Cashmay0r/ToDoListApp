@@ -34,7 +34,7 @@ const __dirname = dirname(__filename);
 const jsonParser = bodyParser.json();
 
 //Serving static files
-app.use(express.static(__dirname + "/public/js"));
+
 app.use(express.static(__dirname + "/public/css"));
 app.use(express.static(__dirname + "/public/images"));
 
@@ -51,7 +51,9 @@ app.get("/get-list", (req, res) => {
 
 //Serving Index page when page is loaded
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  app.use("/public/js/auth.js", express.static(__dirname + "/public/js/auth.js"));
+  res.sendFile(__dirname + "/public/html/main.html");
+  //res.sendFile(__dirname + "/public/index.html");
 });
 
 //Getting post data passed from front-end and uplaoding to MongoDB
