@@ -262,7 +262,7 @@ input {
   border-radius: 50%;
   transform: scale(0);
   transition: all 0.4s cubic-bezier(0.54, 0.01, 0, 1.49);
-  z-index: 1;
+  z-login: 1;
 }
 .listCheckBox input[type="checkbox"]:checked + label::before {
   transform: scale(1);
@@ -280,7 +280,7 @@ input {
   border: 2px solid var(--title-white);
   display: block;
   border-radius: 50%;
-  z-index: 1;
+  z-login: 1;
 }
 
 @media only screen and (min-width: 600px) {

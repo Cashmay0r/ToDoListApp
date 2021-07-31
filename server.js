@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { List } from "./models/list.js";
 import { v4 as uuidv4 } from "uuid";
+import firebase from "firebase";
 
 const app = express();
 //Don't delete env
@@ -13,6 +14,20 @@ const env = dotenv.config();
 //Vars storing MongoDB api key and port values
 const dbURI = process.env.MONGO_API_KEY;
 const port = process.env.PORT || 3000;
+
+app.set("view engine", "ejs");
+
+var firebaseConfig = {
+  apiKey: "AIzaSyBZZwG13vpoOxxzhwdNcg8FRFa5OkJwAYM",
+  authDomain: "todolist-9c809.firebaseapp.com",
+  projectId: "todolist-9c809",
+  storageBucket: "todolist-9c809.appspot.com",
+  messagingSenderId: "292110508993",
+  appId: "1:292110508993:web:7769002ab9782206af8540",
+  measurementId: "G-890NPESGRB",
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
 //Connecting to the MongoDB Database, will start server once DB is connected
 mongoose
@@ -34,9 +49,7 @@ const __dirname = dirname(__filename);
 const jsonParser = bodyParser.json();
 
 //Serving static files
-
-app.use(express.static(__dirname + "/public/css"));
-app.use(express.static(__dirname + "/public/images"));
+app.use(express.static(__dirname + "/public"));
 
 //Getting DB list items and returning to front end
 app.get("/get-list", (req, res) => {
@@ -49,11 +62,20 @@ app.get("/get-list", (req, res) => {
     });
 });
 
-//Serving Index page when page is loaded
+//Serving login page when page is loaded
 app.get("/", (req, res) => {
-  app.use("/public/js/auth.js", express.static(__dirname + "/public/js/auth.js"));
-  res.sendFile(__dirname + "/public/html/main.html");
-  //res.sendFile(__dirname + "/public/index.html");
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      res.render("main");
+      // var uid = user.uid;
+
+      // ...
+    } else {
+      // User is signed out
+      res.render("login");
+      // ;
+    }
+  });
 });
 
 //Getting post data passed from front-end and uplaoding to MongoDB
@@ -102,3 +124,59 @@ app.post("/updateItem", jsonParser, (req, res) => {
       res.send(err);
     });
 });
+
+app.post("/login", jsonParser, (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      console.log(user.email);
+      res.render("main");
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+      res.render("login");
+    });
+});
+app.post("/register", jsonParser, (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      console.log(user);
+      res.render("main");
+
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+      res.render("login");
+      // ..
+    });
+});
+app.post("/logout", jsonParser, (req, res) => {
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
+    });
+});
+app.get("/userDetails", (req, res) => {});

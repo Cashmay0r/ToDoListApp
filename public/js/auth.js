@@ -39,9 +39,26 @@ function attachEventListeners() {
 }
 
 //Send Login POST
-const loginUser = async () => {};
-const email = document.getElementById("loginEmail").value;
-const pass = document.getElementById("loginPass").value;
+const loginUser = async () => {
+  const email = document.getElementById("loginEmail").value;
+  const pass = document.getElementById("loginPass").value;
+
+  item = {
+    email: email,
+    password: pass,
+  };
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(item),
+  };
+  try {
+    const req = await fetch("/login", options);
+    console.log(req);
+  } catch {
+    console.log(req);
+  }
+};
 
 //Send Register POST
 const registerUser = async () => {
@@ -51,6 +68,18 @@ const registerUser = async () => {
 
   if (pass1 === pass2) {
     //Send a POST to backend with email and 1 password
+    item = {
+      email: email,
+      password: pass1,
+    };
+    const options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(item),
+    };
+    try {
+      const req = await fetch("/register", options);
+    } catch {}
   } else {
     alert("Passwords do not match, try again");
     pass1.innerHTML = "";
